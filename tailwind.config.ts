@@ -7,14 +7,17 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend:{
-      colors:{
-        "w-yellow":"#f5ee30",
-        "w-red":"#f1592a",
-        "w-green":"#13a89e",
-        "w-blue":"#2fc5f4",
-      }
-    }
+    extend: {
+      gridTemplateRows: {
+        layout: "auto 1fr",
+      },
+      colors: {
+        "w-yellow": "#f5ee30",
+        "w-red": "#f1592a",
+        "w-green": "#13a89e",
+        "w-blue": "#2fc5f4",
+      },
+    },
   },
   plugins: [],
 };

@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Gnb from "@/components/layout/Gnb";
-
-const inter = Inter({ subsets: ["latin"] });
+import ReactQueryProvider from "@/components/layout/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +17,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Gnb />
-        {children}      
+        <ReactQueryProvider>
+          <div className="grid grid-rows-layout h-screen">
+            <Gnb />
+            <main className="max-w-screen-xl w-full m-auto h-full px-12">
+              {children}
+            </main>
+          </div>
+        </ReactQueryProvider>
       </body>
     </html>
   );

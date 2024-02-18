@@ -1,10 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 
 body {
   font-family: "Noto Sans KR", sans-serif;
+  background: #1b2335;
+  color: #fff;
+}
+
+.ag-theme.ag-theme-wisebirds {
+  --ag-foreground-color: rgb(208 210 212);
+  --ag-background-color: rgb(33 41 61);
+  --ag-header-foreground-color: rgb(251 255 255);
+  --ag-header-background-color: rgb(22 29 47);
+  --ag-header-column-resize-handle-color: rgb(126, 46, 132);
+  --ag-border-color: rgba(0 0 0 0);
+  --ag-row-border-color: rgb(43 51 71);
+  --ag-font-size: 14px;
+  --ag-font-family: "Noto Sans KR", sans-serif;
+  --ag-range-selection-border-color: transparent;
+  --ag-grid-size: 6px;
+}
+
+.ag-theme.ag-theme-wisebirds .ag-header-cell {
+  font-size: 16px;
+}
+
+.ag-row-selected {
+  border: none !important; /* 테두리 제거 */
+}
+
+.MuiDataGrid-Wisebird .MuiDataGrid-root {
+  color: rgb(251 255 255);
+  /* background: rgb(33 41 61); */
+  border-color: transparent;
+}
+.MuiDataGrid-Wisebird .MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+.MuiDataGrid-Wisebird .MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: transparent;
+}
+
+.MuiDataGrid-Wisebird .MuiDataGrid-root .MuiDataGrid-iconSeparator {
+  display: none;
+}
+
+.MuiDataGrid-Wisebird .MuiDataGrid-root .MuiDataGrid-columnHeaders {
+  background: rgb(22 29 47);
+}
+
+.MuiDataGrid-Wisebird .MuiDataGrid-root .MuiDataGrid-withBorderColor {
+  border-color: rgb(43 51 71);
+}
+
+.MuiDataGrid-Wisebird .MuiDataGrid-overlayWrapperInner .MuiDataGrid-overlay {
+  background-color: transparent;
+}
+
+.MuiDataGrid-Wisebird
+  .MuiDataGrid-overlayWrapperInner
+  .MuiDataGrid-overlay
+  svg {
+  color: #f5ee30;
 }
 
 /*
