@@ -8,14 +8,15 @@ import {
 } from "react-icons/md";
 
 const Paging = ({ lastPage, current, onChange }: TPaging) => {
-  const pageSize = 10;
-  const currentPageGroup = Math.ceil(current / pageSize);
+  const pageSize = 10; // 페이지 그룹 사이즈
+  const currentPageGroup = Math.ceil(current / pageSize); //현제 페이지 그룹
   const pages = Array.from(
     { length: pageSize },
     (_, i) => i + 1 + (currentPageGroup - 1) * pageSize
-  );
+  ); // 페이지 생성
   return (
     <div className="flex justify-center items-center pt-4">
+      {/* 이전 그룹 */}
       <button
         className={
           "transition-all flex items-center justify-center w-8 h-8 text-2xl font-bold rounded hover:scale-125 disabled:opacity-25"
@@ -25,6 +26,7 @@ const Paging = ({ lastPage, current, onChange }: TPaging) => {
       >
         <MdOutlineKeyboardDoubleArrowLeft />
       </button>
+      {/* 이전 페이지 */}
       <button
         className={
           "transition-all flex items-center justify-center w-8 h-8 text-2xl font-bold rounded hover:scale-125 disabled:opacity-25"
@@ -51,6 +53,8 @@ const Paging = ({ lastPage, current, onChange }: TPaging) => {
           </li>
         ))}
       </ul>
+
+      {/* 다음 페이지 */}
       <button
         className={
           "transition-all flex items-center justify-center w-8 h-8 text-2xl font-bold rounded hover:scale-125 disabled:opacity-25"
@@ -60,6 +64,8 @@ const Paging = ({ lastPage, current, onChange }: TPaging) => {
       >
         <MdOutlineKeyboardArrowRight />
       </button>
+
+      {/* 다음 그룹 */}
       <button
         className={
           "transition-all flex items-center justify-center w-8 h-8 text-2xl font-bold rounded hover:scale-125 disabled:opacity-25"

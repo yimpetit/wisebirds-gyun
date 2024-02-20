@@ -69,3 +69,17 @@ export const motionToggle: Variants = {
     x: 0,
   },
 };
+
+//비활성화
+export const motionDialogs: Variants = {
+  open: {
+    opacity: 1,
+    display: "block",
+  },
+  closed: {
+    opacity: 0,
+    transitionEnd: {
+      display: "none",
+    },
+  },
+};

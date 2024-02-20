@@ -1,4 +1,4 @@
-import data from "@/public/data/campaigns.json"; // 목업 데이터 가져옴
+import data from "@/public/data/users.json"; // 목업 데이터 가져옴
 import { NextRequest } from "next/server";
 import _ from "lodash";
 
@@ -27,5 +27,13 @@ export async function GET(request: NextRequest) {
     number_of_elements: content[page - 1].length,
     first: page === 1,
     empty: data.length === 0,
+  });
+}
+
+export async function POST() {
+  // const data = await request.json();
+  return Response.json({
+    result: true,
+    id: 10000,
   });
 }

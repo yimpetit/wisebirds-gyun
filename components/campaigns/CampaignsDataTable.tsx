@@ -6,16 +6,15 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { getCampaigns, getMenu, patchCampaign } from "@/lib/api";
+import { getCampaigns, patchCampaign } from "@/lib/api";
 import { PermissionsStore } from "@/store/permissions";
 import { toRoundedPercentage } from "@/lib/helper";
 import ToggleButton from "../common/ToggleButton";
 import _ from "lodash";
-import Skeleton from "../common/Skeleton";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { Column } from "react-table";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paging from "../common/Paging";
+import Selector from "../common/Selector";
+import { FaLongArrowAltDown } from "react-icons/fa";
 
 const CampaignsDataTable = () => {
   // store에서 권한 상태 가져옴
@@ -28,14 +27,10 @@ const CampaignsDataTable = () => {
   });
 
   // React query 캠페인 리스트 호출
-  const { data, isFetching, isPlaceholderData } = useQuery<
-    TCampaignData,
-    Error
-  >({
+  const { data, isFetching } = useQuery<TCampaignData, Error>({
     queryKey: ["getCampaigns", params],
     queryFn: () =>
       getCampaigns({ page: params.page, size: params.size, sort: params.sort }),
-    refetchOnWindowFocus: false,
     placeholderData: keepPreviousData,
   });
 
@@ -43,6 +38,9 @@ const CampaignsDataTable = () => {
     lastPage: data?.total_pages,
     current: data?.number,
   };
+
+  // data 수정을 위한 queryClient 선언
+  const queryClient = useQueryClient();
 
   // React query 캠페인 상태 패치
   const mutation = useMutation({
@@ -63,7 +61,6 @@ const CampaignsDataTable = () => {
             }
           : item
       );
-      console.log(previousValueContent);
       if (previousValue) {
         queryClient.setQueryData(
           ["getCampaigns", params],
@@ -77,8 +74,6 @@ const CampaignsDataTable = () => {
       }
     },
   });
-
-  const queryClient = useQueryClient();
 
   const columnDefs: GridColDef[] = [
     // 컬럼 정보
@@ -181,6 +176,7 @@ const CampaignsDataTable = () => {
     {
       field: "video_views",
       headerName: "동영상조회수",
+      sortable: false,
       align: "right",
       flex: 1,
       headerAlign: "right",
@@ -200,6 +196,67 @@ const CampaignsDataTable = () => {
 
   return (
     <>
+      <div className="flex items-center gap-4 pb-3">
+        <div className="flex gap-2">
+          <Selector
+            options={[
+              {
+                name: "캠패인명",
+                value: "name",
+              },
+              {
+                name: "캠페인 목적",
+                value: "campaign_objective",
+              },
+              {
+                name: "노출수",
+                value: "impressions",
+              },
+              {
+                name: "클릭수",
+                value: "clicks",
+              },
+              {
+                name: "CTR",
+                value: "ctr",
+              },
+              {
+                name: "동영상조회수",
+                value: "video_views",
+              },
+              {
+                name: "VTR",
+                value: "vtr",
+              },
+            ]}
+            onChange={(value) => {
+              setParams({
+                ...params,
+                sort: value + "," + params.sort.split(",")[1],
+              });
+            }}
+          />
+          <button
+            className={
+              "transition-all text-slate-400 " +
+              (params.sort.indexOf("Asc") === -1 ? "rotate-180" : "")
+            }
+            onClick={() => {
+              const sortInfo = params.sort.split(",");
+              setParams({
+                ...params,
+                sort:
+                  sortInfo[0] + "," + (sortInfo[1] === "Asc" ? "Desc" : "Asc"),
+              });
+            }}
+          >
+            <FaLongArrowAltDown />
+          </button>
+        </div>
+        <div className="text-sm text-slate-400">
+          총 캠페인 수 : {data?.total_elements}
+        </div>
+      </div>
       <div className="MuiDataGrid-Wisebird w-full max-h-[700px] h-full">
         <DataGrid
           rows={data?.content ?? []}

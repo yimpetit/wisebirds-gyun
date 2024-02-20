@@ -7,8 +7,12 @@ import { getMenu } from "@/lib/api";
 import { motion } from "framer-motion";
 import _ from "lodash";
 import { motionMenuDrop } from "@/lib/motionVariants";
+import { usePathname } from "next/navigation";
 
 const GnbMenu = () => {
+  // 현재 페이지 표시를 위한 url get
+  const pathName = usePathname().replace("/", "");
+
   // store에서 권한 상태 가져옴
   const auth = PermissionsStore((state) => state.Permissions);
 
@@ -28,9 +32,10 @@ const GnbMenu = () => {
             !isLoading && item.role.indexOf(auth) !== -1 ? "loaded" : "loading"
           }
           key={item.id}
+          className={item.menu.toLowerCase() === pathName ? "bg-slate-800" : ""}
         >
           <Link
-            href="/"
+            href={"/" + item.menu.toLowerCase()}
             className="flex h-full items-center px-4 text- font-medium hover:bg-gray-800 transition-colors"
           >
             {item.name}

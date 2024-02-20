@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 
+//화면 스켈레톤
 const Skeleton = ({
   tailWindClass,
   children,

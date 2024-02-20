@@ -1,3 +1,4 @@
+// 퍼센트 변환 헬퍼
 export const toRoundedPercentage = (value: number) => {
   // 소수 세 번째 자리에서 반올림
   const roundedValue = Math.round(value * 100) / 100;

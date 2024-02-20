@@ -2,7 +2,7 @@ export async function GET() {
   return Response.json([
     {
       id: 1,
-      menu: "CAMPAIGN",
+      menu: "CAMPAIGNS",
       role: ["ADMIN", "MANAGER", "VIEWER"],
       name: "캠페인",
     },
