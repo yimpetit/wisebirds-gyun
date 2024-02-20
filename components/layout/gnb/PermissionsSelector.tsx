@@ -1,7 +1,7 @@
 "use client";
 import { getPermissionsInfo } from "@/lib/api";
 import { PermissionsStore } from "@/store/permissions";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import _ from "lodash";
 import Selector from "@/components/common/Selector";
 import { usePathname } from "next/navigation";
