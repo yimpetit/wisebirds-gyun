@@ -22,6 +22,10 @@ pnpm dev
 
 ---
 
+![화면](https://github.com/yimpetit/wisebirds-gyun/assets/35022789/63b98a1a-4e51-4176-97e4-4abcd2947c1a)
+
+---
+
 ### 개발 기간 🕐
 
 2월 16일 ~ 20일 완료 (약 52시간)
